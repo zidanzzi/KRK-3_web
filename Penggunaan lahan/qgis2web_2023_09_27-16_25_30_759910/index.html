@@ -1,0 +1,405 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width">
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <link rel="stylesheet" href="css/leaflet.css">
+        <link rel="stylesheet" href="css/qgis2web.css"><link rel="stylesheet" href="css/fontawesome-all.min.css">
+        <link rel="stylesheet" href="css/leaflet-control-geocoder.Geocoder.css">
+        <style>
+        #map {
+            width: 1386px;
+            height: 610px;
+        }
+        </style>
+        <title></title>
+    </head>
+    <body>
+        <div id="map">
+        </div>
+        <script src="js/qgis2web_expressions.js"></script>
+        <script src="js/leaflet.js"></script>
+        <script src="js/leaflet.rotatedMarker.js"></script>
+        <script src="js/leaflet.pattern.js"></script>
+        <script src="js/leaflet-hash.js"></script>
+        <script src="js/Autolinker.min.js"></script>
+        <script src="js/rbush.min.js"></script>
+        <script src="js/labelgun.min.js"></script>
+        <script src="js/labels.js"></script>
+        <script src="js/leaflet-control-geocoder.Geocoder.js"></script>
+        <script src="data/PENGGUNAAN_LAHAN_AR_1.js"></script>
+        <script>
+        var map = L.map('map', {
+            zoomControl:true, maxZoom:28, minZoom:1
+        }).fitBounds([[-6.950566214943057,107.74747172458896],[-6.9138309050026985,107.83109289063768]]);
+        var hash = new L.Hash(map);
+        map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
+        var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
+        var bounds_group = new L.featureGroup([]);
+        function setBounds() {
+        }
+        map.createPane('pane_GoogleEarth_0');
+        map.getPane('pane_GoogleEarth_0').style.zIndex = 400;
+        var layer_GoogleEarth_0 = L.tileLayer('https://mt1.google.com/vt/lyrs=s&x={x}&y={y}&z={z}', {
+            pane: 'pane_GoogleEarth_0',
+            opacity: 1.0,
+            attribution: '',
+            minZoom: 1,
+            maxZoom: 28,
+            minNativeZoom: 0,
+            maxNativeZoom: 18
+        });
+        layer_GoogleEarth_0;
+        map.addLayer(layer_GoogleEarth_0);
+        function pop_PENGGUNAAN_LAHAN_AR_1(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['OBJECTID'] !== null ? autolinker.link(feature.properties['OBJECTID'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['NAMOBJ'] !== null ? autolinker.link(feature.properties['NAMOBJ'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['WADMKC'] !== null ? autolinker.link(feature.properties['WADMKC'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['WADMPR'] !== null ? autolinker.link(feature.properties['WADMPR'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Shape_Leng'] !== null ? autolinker.link(feature.properties['Shape_Leng'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Catatan'] !== null ? autolinker.link(feature.properties['Catatan'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Shape_Le_1'] !== null ? autolinker.link(feature.properties['Shape_Le_1'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Shape_Area'] !== null ? autolinker.link(feature.properties['Shape_Area'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_PENGGUNAAN_LAHAN_AR_1_0(feature) {
+            switch(String(feature.properties['Catatan'])) {
+                case 'Fasilitas Pendidikan':
+                    return {
+                pane: 'pane_PENGGUNAAN_LAHAN_AR_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(175,106,215,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'Gedung':
+                    return {
+                pane: 'pane_PENGGUNAAN_LAHAN_AR_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(81,19,215,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'Hutan':
+                    return {
+                pane: 'pane_PENGGUNAAN_LAHAN_AR_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(110,172,206,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'Hutan Tanaman Campur':
+                    return {
+                pane: 'pane_PENGGUNAAN_LAHAN_AR_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(70,221,133,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'Industri':
+                    return {
+                pane: 'pane_PENGGUNAAN_LAHAN_AR_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(205,124,37,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'Kesehatan':
+                    return {
+                pane: 'pane_PENGGUNAAN_LAHAN_AR_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(36,92,205,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'Kolam':
+                    return {
+                pane: 'pane_PENGGUNAAN_LAHAN_AR_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(101,238,63,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'Ladang':
+                    return {
+                pane: 'pane_PENGGUNAAN_LAHAN_AR_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(211,230,101,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'Lahan Kosong':
+                    return {
+                pane: 'pane_PENGGUNAAN_LAHAN_AR_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(142,224,49,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'Lapangan Sepakbola':
+                    return {
+                pane: 'pane_PENGGUNAAN_LAHAN_AR_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(212,188,68,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'Pemerintahan':
+                    return {
+                pane: 'pane_PENGGUNAAN_LAHAN_AR_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(26,238,47,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'Perbelanjaan':
+                    return {
+                pane: 'pane_PENGGUNAAN_LAHAN_AR_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(43,201,206,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'Permukiman Terencana':
+                    return {
+                pane: 'pane_PENGGUNAAN_LAHAN_AR_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(220,65,26,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'Permukiman Tidak Terencana':
+                    return {
+                pane: 'pane_PENGGUNAAN_LAHAN_AR_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(220,121,194,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'Sawah':
+                    return {
+                pane: 'pane_PENGGUNAAN_LAHAN_AR_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(65,65,225,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'Taman':
+                    return {
+                pane: 'pane_PENGGUNAAN_LAHAN_AR_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(217,25,105,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'Tanaman Campur':
+                    return {
+                pane: 'pane_PENGGUNAAN_LAHAN_AR_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(206,67,213,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'Terminal Bus':
+                    return {
+                pane: 'pane_PENGGUNAAN_LAHAN_AR_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(209,117,126,1.0)',
+                interactive: true,
+            }
+                    break;
+                default:
+                    return {
+                pane: 'pane_PENGGUNAAN_LAHAN_AR_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(38,210,164,1.0)',
+                interactive: true,
+            }
+                    break;
+            }
+        }
+        map.createPane('pane_PENGGUNAAN_LAHAN_AR_1');
+        map.getPane('pane_PENGGUNAAN_LAHAN_AR_1').style.zIndex = 401;
+        map.getPane('pane_PENGGUNAAN_LAHAN_AR_1').style['mix-blend-mode'] = 'normal';
+        var layer_PENGGUNAAN_LAHAN_AR_1 = new L.geoJson(json_PENGGUNAAN_LAHAN_AR_1, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_PENGGUNAAN_LAHAN_AR_1',
+            layerName: 'layer_PENGGUNAAN_LAHAN_AR_1',
+            pane: 'pane_PENGGUNAAN_LAHAN_AR_1',
+            onEachFeature: pop_PENGGUNAAN_LAHAN_AR_1,
+            style: style_PENGGUNAAN_LAHAN_AR_1_0,
+        });
+        bounds_group.addLayer(layer_PENGGUNAAN_LAHAN_AR_1);
+        map.addLayer(layer_PENGGUNAAN_LAHAN_AR_1);
+        var osmGeocoder = new L.Control.Geocoder({
+            collapsed: true,
+            position: 'topleft',
+            text: 'Search',
+            title: 'Testing'
+        }).addTo(map);
+        document.getElementsByClassName('leaflet-control-geocoder-icon')[0]
+        .className += ' fa fa-search';
+        document.getElementsByClassName('leaflet-control-geocoder-icon')[0]
+        .title += 'Search for a place';
+        var baseMaps = {};
+        L.control.layers(baseMaps,{'PENGGUNAAN_LAHAN_AR<br /><table><tr><td style="text-align: center;"><img src="legend/PENGGUNAAN_LAHAN_AR_1_FasilitasPendidikan0.png" /></td><td>Fasilitas Pendidikan</td></tr><tr><td style="text-align: center;"><img src="legend/PENGGUNAAN_LAHAN_AR_1_Gedung1.png" /></td><td>Gedung</td></tr><tr><td style="text-align: center;"><img src="legend/PENGGUNAAN_LAHAN_AR_1_Hutan2.png" /></td><td>Hutan</td></tr><tr><td style="text-align: center;"><img src="legend/PENGGUNAAN_LAHAN_AR_1_HutanTanamanCampur3.png" /></td><td>Hutan Tanaman Campur</td></tr><tr><td style="text-align: center;"><img src="legend/PENGGUNAAN_LAHAN_AR_1_Industri4.png" /></td><td>Industri</td></tr><tr><td style="text-align: center;"><img src="legend/PENGGUNAAN_LAHAN_AR_1_Kesehatan5.png" /></td><td>Kesehatan</td></tr><tr><td style="text-align: center;"><img src="legend/PENGGUNAAN_LAHAN_AR_1_Kolam6.png" /></td><td>Kolam</td></tr><tr><td style="text-align: center;"><img src="legend/PENGGUNAAN_LAHAN_AR_1_Ladang7.png" /></td><td>Ladang</td></tr><tr><td style="text-align: center;"><img src="legend/PENGGUNAAN_LAHAN_AR_1_LahanKosong8.png" /></td><td>Lahan Kosong</td></tr><tr><td style="text-align: center;"><img src="legend/PENGGUNAAN_LAHAN_AR_1_LapanganSepakbola9.png" /></td><td>Lapangan Sepakbola</td></tr><tr><td style="text-align: center;"><img src="legend/PENGGUNAAN_LAHAN_AR_1_Pemerintahan10.png" /></td><td>Pemerintahan</td></tr><tr><td style="text-align: center;"><img src="legend/PENGGUNAAN_LAHAN_AR_1_Perbelanjaan11.png" /></td><td>Perbelanjaan</td></tr><tr><td style="text-align: center;"><img src="legend/PENGGUNAAN_LAHAN_AR_1_PermukimanTerencana12.png" /></td><td>Permukiman Terencana</td></tr><tr><td style="text-align: center;"><img src="legend/PENGGUNAAN_LAHAN_AR_1_PermukimanTidakTerencana13.png" /></td><td>Permukiman Tidak Terencana</td></tr><tr><td style="text-align: center;"><img src="legend/PENGGUNAAN_LAHAN_AR_1_Sawah14.png" /></td><td>Sawah</td></tr><tr><td style="text-align: center;"><img src="legend/PENGGUNAAN_LAHAN_AR_1_Taman15.png" /></td><td>Taman</td></tr><tr><td style="text-align: center;"><img src="legend/PENGGUNAAN_LAHAN_AR_1_TanamanCampur16.png" /></td><td>Tanaman Campur</td></tr><tr><td style="text-align: center;"><img src="legend/PENGGUNAAN_LAHAN_AR_1_TerminalBus17.png" /></td><td>Terminal Bus</td></tr><tr><td style="text-align: center;"><img src="legend/PENGGUNAAN_LAHAN_AR_1_18.png" /></td><td></td></tr></table>': layer_PENGGUNAAN_LAHAN_AR_1,"Google Earth": layer_GoogleEarth_0,}).addTo(map);
+        setBounds();
+        </script>
+    </body>
+</html>
